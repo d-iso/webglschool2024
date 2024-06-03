@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+html, body {
+	overflow: hidden;
+	font-family: sans-serif;
+	font-size: 16px;
+}
+.controls {
+	position: fixed;
+	right: 50px;
+	bottom: 50px;
+	padding: 20px;
+	background: #FFFFFF;
+	border-radius: 20px;
+}
+.buttons {
+	display: flex;
+	column-gap: 10px;
+}
+.buttons button {
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	aspect-ratio: 1 / 1;
+	color: black;
+	font-family: sans-serif;
+	font-size: 16px;
+	width: 50px;
+	border: none;
+	border-radius: 50%;
+	font-weight: 700;
+	cursor: pointer;
+	box-shadow: 5px 5px 0 darkgray;
+}
+.buttons button.power {
+	font-size: 14px;
+}
+.buttons button.active {
+	translate: 3px 3px;
+	box-shadow: 2px 2px 0 darkgray inset;
+}
+.buttons button svg {
+	aspect-ratio: 1 / 1;
+	width: 35px;
+}
+.buttons button.vertical svg {
+	rotate: 90deg;
+}
+.level {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	column-gap: 10px;
+	margin-bottom: 20px;
+	color: #FFFFFF;
+}
+.level .dot {
+	aspect-ratio: 1 / 1;
+	width: 20px;
+	border-radius: 50%;
+	background: gray;
+}
+.level .dot.on {
+	background: green;
+}
+/* .power[data-power="1"] .dot:nth-child(-n+1) {
+	background: green;
+}
+.power[data-power="2"] .dot:nth-child(-n+2) {
+	background: green;
+}
+.power[data-power="3"] .dot:nth-child(-n+3) {
+	background: green;
+}
+.power[data-power="4"] .dot:nth-child(-n+4) {
+	background: green;
+}
+.power[data-power="5"] .dot:nth-child(-n+5) {
+	background: green;
+} */
+</style>
+</head>
+<body>
+<div id="webgl"></div>
+<div class="controls">
+	<div class="level">
+		POWER
+		<div class="dot"></div>
+		<div class="dot"></div>
+		<div class="dot"></div>
+		<div class="dot"></div>
+		<div class="dot"></div>
+	</div>
+	<div class="buttons">
+		<button class="power">入/切</button>
+		<button class="slow">弱</button>
+		<button class="fast">強</button>
+		<button class="horizontal"><svg viewBox="0 0 20 20"><path d="M19.925,10.709l-1.109-4.149-4.149,1.107,2.172,1.257c-1.498,2.311-4.073,3.74-6.84,3.74s-5.342-1.43-6.84-3.74l2.172-1.257-4.149-1.107L.075,10.709l2.22-1.284c1.676,2.618,4.583,4.24,7.705,4.24s6.029-1.622,7.705-4.24l2.22,1.284Z" /></svg></button>
+		<button class="vertical"><svg viewBox="0 0 20 20"><path d="M19.925,10.709l-1.109-4.149-4.149,1.107,2.172,1.257c-1.498,2.311-4.073,3.74-6.84,3.74s-5.342-1.43-6.84-3.74l2.172-1.257-4.149-1.107L.075,10.709l2.22-1.284c1.676,2.618,4.583,4.24,7.705,4.24s6.029-1.622,7.705-4.24l2.22,1.284Z" /></svg></button>
+	</div>
+</div>
+<script defer src="./script.js" type="module"></script>
+</body>
+</html>
