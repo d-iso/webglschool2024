@@ -34,7 +34,7 @@ class ThreeApp {
 		radius: 10,
 		splitRow: 48,
 		splitCol: 36,
-		wave: 8,
+		wave: 6,
 	};
 
 	static PLANE_CONFIG = {
@@ -234,7 +234,7 @@ class ThreeApp {
 								}
 								return;
 							}
-							const addVec = plane.position.clone().normalize().multiplyScalar(distance * (ThreeApp.PLANE_CONFIG.move.max - aftereffect * 0.0001));
+							const addVec = plane.position.clone().normalize().multiplyScalar(distance * (ThreeApp.PLANE_CONFIG.move.max - aftereffect * 0.00015));
 							plane.position.add(addVec);
 							plane.scale.addScalar(ThreeApp.PLANE_CONFIG.move.scale * (distance));
 							plane.userData.color.h += distance / 30;
