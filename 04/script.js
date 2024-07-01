@@ -89,7 +89,7 @@ class ThreeApp {
 
 		// raycaster
 		this.raycaster = new THREE.Raycaster();
-		window.addEventListener('mousemove', (e)=>{
+		window.addEventListener('pointermove', (e)=>{
 			const x = e.clientX / window.innerWidth * 2 - 1;
 			const y = e.clientY / window.innerHeight * 2 - 1;
 			const v = new THREE.Vector2(x, -y);
@@ -169,7 +169,6 @@ class ThreeApp {
 		axis.normalize();
 		this.qtn = new THREE.Quaternion().setFromAxisAngle(axis, 0.001);
 		const h = 2 * ThreeApp.SPHERE_CONFIG.radius * Math.sin(Math.PI / ThreeApp.SPHERE_CONFIG.splitRow);
-		const material = new THREE.MeshStandardMaterial(ThreeApp.PLANE_CONFIG.material);
 		const rowDegree = 360 / ThreeApp.SPHERE_CONFIG.splitRow;
 		const colDegree = 360 / ThreeApp.SPHERE_CONFIG.splitCol;
 		const outerRadius = ThreeApp.SPHERE_CONFIG.radius / Math.cos(rowDegree * Math.PI / 180);
@@ -237,7 +236,7 @@ class ThreeApp {
 							}
 							const addVec = plane.position.clone().normalize().multiplyScalar(distance * (ThreeApp.SPHERE_CONFIG.maxMove - aftereffect * 0.0001));
 							plane.position.add(addVec);
-							plane.scale.addScalar(0.00005 * (distance));
+							plane.scale.addScalar(0.00004 * (distance));
 							plane.userData.color.h += distance / 30;
 							plane.userData.color.l -= distance / 80;
 							if( plane.userData.color.l > 100 ) {
