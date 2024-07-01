@@ -110,7 +110,6 @@ class ThreeApp {
 						if( row - i >= 0 ) {
 							wave(center, this.rows[row-i], i);
 						}
-						console.log(row + i);
 						if( row + i < ThreeApp.SPHERE_CONFIG.splitRow/2-1 ) {
 							wave(center, this.rows[row+i], i);
 						}
@@ -222,8 +221,8 @@ class ThreeApp {
 						plane.userData.queues.forEach((queue, i)=>{
 							const aftereffect = plane.userData.queues[i].aftereffect;
 							let distance = plane.userData.queues[i].distance;
-							distance += 1;
-							if( distance > 30 ) {
+							distance -= 1;
+							if( distance < -30 ) {
 								plane.userData.queues.splice(i, 1);
 								if( !plane.userData.queues.length ) {
 									plane.userData.mouseon = false;
@@ -236,10 +235,11 @@ class ThreeApp {
 								}
 								return;
 							}
-							const addVec = plane.position.clone().normalize().multiplyScalar(distance * (-1 * ThreeApp.SPHERE_CONFIG.maxMove + aftereffect * 0.0001));
+							const addVec = plane.position.clone().normalize().multiplyScalar(distance * (ThreeApp.SPHERE_CONFIG.maxMove - aftereffect * 0.0001));
 							plane.position.add(addVec);
-							plane.userData.color.h -= distance / 30;
-							plane.userData.color.l += distance / 80;
+							plane.scale.addScalar(0.00005 * (distance));
+							plane.userData.color.h += distance / 30;
+							plane.userData.color.l -= distance / 80;
 							if( plane.userData.color.l > 100 ) {
 								plane.userData.color.l = 100;
 							} else if( plane.userData.color.l < 70 ) {
@@ -250,7 +250,7 @@ class ThreeApp {
 						});
 					},
 					addAnimation: (aftereffect)=>{
-						plane.userData.queues.push({distance:-31, aftereffect:aftereffect});
+						plane.userData.queues.push({distance:31, aftereffect:aftereffect});
 					},
 				};
 				plane.material = plane.userData.material();
