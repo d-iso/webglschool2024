@@ -210,10 +210,9 @@ class ThreeApp {
 						const h = plane.userData.color.h;
 						const s = plane.userData.color.s;
 						const l = plane.userData.color.l;
-						return new THREE.MeshStandardMaterial({
+						return new THREE.MeshPhongMaterial({
 							color: `hsl(${h}, ${s}%, ${l}%)`,
 							side: THREE.DoubleSide,
-							roughness: 0.5,
 						});
 					},
 					animation: ()=>{
