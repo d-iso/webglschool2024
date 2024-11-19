@@ -1,0 +1,1 @@
+html,body{margin:0;overflow:hidden;background:#000}.progress{transition:scale .5s cubic-bezier(0.165, 0.84, 0.44, 1) 0s;transform-origin:left center;scale:0 1;position:fixed;inset:calc(50% - 2px) 0;background:#fff}
