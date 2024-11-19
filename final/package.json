@@ -1,0 +1,96 @@
+{
+  "name": "webglschool2024",
+  "version": "1.0.0",
+  "author": "kojilow",
+  "license": "MIT",
+  "private": true,
+  "config": {
+    "src": "src",
+    "public": "public_html",
+    "css": {
+      "sass": true,
+      "src": "sass",
+      "dest": "css",
+      "minify": true
+    },
+    "js": {
+      "webpack": true,
+      "src": "js",
+      "dest": "js",
+      "entry": "main"
+    },
+    "image": {
+      "compress": true,
+      "src": "imgs",
+      "dest": "imgs",
+      "avif": false,
+      "webp": false,
+      "jpg": true,
+      "png": true
+    }
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not dead",
+    "not IE 11",
+    "Android >= 11.0"
+  ],
+  "scripts": {
+    "start": "NODE_ENV=production npm run init",
+    "dev": "NODE_ENV=development npm run init",
+    "init": "node ./scripts/init.js && npm run server & npm run css:watch & npm run js:watch & npm run image:watch",
+    "server": "browser-sync start --config ./scripts/bs-config.js",
+    "build": "NODE_ENV=production npm run css:build & npm run js:build & npm run image:build",
+    "css:watch": "if [[ $npm_package_config_css_sass ]]; then node ./scripts/sass.js watch; fi",
+    "css:build": "if [[ $npm_package_config_css_sass ]]; then node ./scripts/sass.js build; fi",
+    "js:watch": "if [[ $npm_package_config_js_webpack ]]; then webpack -w --config ./scripts/webpack.config.js; fi",
+    "js:build": "if [[ $npm_package_config_js_webpack ]]; then webpack --config ./scripts/webpack.config.js; fi",
+    "image:watch": "if [[ $npm_package_config_image_compress ]]; then node ./scripts/image.js watch; fi",
+    "image:build": "if [[ $npm_package_config_image_compress ]]; then node ./scripts/image.js build; fi"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "autoprefixer": "^10.4.2",
+    "babel-loader": "^8.2.3",
+    "browser-sync": "^2.27.7",
+    "chalk": "4.1.2",
+    "chokidar": "^3.5.3",
+    "core-js": "^3.21.1",
+    "cpx": "^1.5.0",
+    "del": "^6.0.0",
+    "fs-extra": "^10.0.1",
+    "http-proxy-middleware": "^3.0.3",
+    "imagemin": "7.0.1",
+    "imagemin-avif": "^0.1.4",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-mozjpeg": "9.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "imagemin-svgo": "9.0.0",
+    "imagemin-webp": "6.0.0",
+    "ip": "^1.1.5",
+    "make-dir": "^3.1.0",
+    "postcss": "^8.4.7",
+    "postcss-cli": "^9.1.0",
+    "process": "^0.11.10",
+    "regenerator-runtime": "^0.13.9",
+    "sass": "^1.49.9",
+    "terser-webpack-plugin": "^5.3.1",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-glsl-loader": "^1.0.1"
+  },
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "normalize-wheel": "^1.0.1",
+    "stats.js": "^0.17.0",
+    "three": "^0.169.0"
+  },
+  "resolutions": {
+    "sharp": "0.31.1"
+  },
+  "volta": {
+    "node": "16.14.0",
+    "yarn": "1.22.17"
+  }
+}
